@@ -10,4 +10,14 @@ describe("Product Service", () => {
 
         expect(product.name).toBe("Rasgulla");
     });
+
+    test("should not allow negative price", () => {
+        expect(() =>
+          addProduct({
+            name: "Ladoo",
+            price: -5,
+            stock: 50
+          })
+        ).toThrow("Invalid price");
+      });
 });
