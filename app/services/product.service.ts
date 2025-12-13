@@ -10,6 +10,10 @@ type Product = ProductInput & {
 
 
 export function addProduct(input: ProductInput): Product {
+    if (input.price < 0) {
+        throw new Error("Invalid price");
+    }
+    
     return {
         id: "1",
         ...input
