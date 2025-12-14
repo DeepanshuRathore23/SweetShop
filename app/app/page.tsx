@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { FaUserCircle, FaSearch } from "react-icons/fa";
+import {FaSearch } from "react-icons/fa";
 
 //dummy data for now
 const sweetsData = [
@@ -25,18 +25,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-blue-200">
-      
-      {/* Navbar */}
-      <nav className="flex justify-between items-center px-8 py-4 bg-white/70 shadow-md sticky top-0 z-50">
-        <h1 className="text-2xl font-bold text-rose-600">
-          🍬 SweetMart
-        </h1>
-
-        <FaUserCircle className="text-3xl text-gray-700 hover:text-rose-500 cursor-pointer transition" />
-      </nav>
-
       {/* Search Section */}
-      <div className="max-w-4xl mx-auto mt-10 px-4">
+      <div className="max-w-4xl mx-auto px-1">
         <div className="bg-white/80 text-black  rounded-2xl shadow-lg p-6 flex flex-col md:flex-row gap-4">
           
           <div className="flex items-center gap-3 flex-1 border rounded-xl px-4 py-2">
