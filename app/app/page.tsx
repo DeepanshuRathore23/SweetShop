@@ -1,65 +1,109 @@
-import Image from "next/image";
+"use client"
+import { useState } from "react";
+import { FaUserCircle, FaSearch } from "react-icons/fa";
+
+//dummy data for now
+const sweetsData = [
+  { id: 1, name: "Gulab Jamun", category: "Indian", price: 50 },
+  { id: 2, name: "Chocolate Cake", category: "Cake", price: 200 },
+  { id: 3, name: "Ladoo", category: "Indian", price: 30 },
+  { id: 4, name: "Donut", category: "Bakery", price: 40 },
+  { id: 5, name: "Rasgulla", category: "Indian", price: 60 },
+  { id: 6, name: "Cupcake", category: "Bakery", price: 80 },
+];
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+  const [maxPrice, setMaxPrice] = useState();
+
+  const filteredSweets = sweetsData.filter(
+    (sweet) =>
+      (sweet.name.toLowerCase().includes(search.toLowerCase()) ||
+        sweet.category.toLowerCase().includes(search.toLowerCase())) &&
+      (maxPrice == undefined || sweet.price <= maxPrice)
+  );
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="min-h-screen bg-blue-200">
+      
+      {/* Navbar */}
+      <nav className="flex justify-between items-center px-8 py-4 bg-white/70 shadow-md sticky top-0 z-50">
+        <h1 className="text-2xl font-bold text-rose-600">
+          🍬 SweetMart
+        </h1>
+
+        <FaUserCircle className="text-3xl text-gray-700 hover:text-rose-500 cursor-pointer transition" />
+      </nav>
+
+      {/* Search Section */}
+      <div className="max-w-4xl mx-auto mt-10 px-4">
+        <div className="bg-white/80 text-black  rounded-2xl shadow-lg p-6 flex flex-col md:flex-row gap-4">
+          
+          <div className="flex items-center gap-3 flex-1 border rounded-xl px-4 py-2">
+            <FaSearch className="" />
+            <input
+              type="text"
+              placeholder="Search sweets by name or category..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full outline-none"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+
+          <input
+            type="number"
+            placeholder="Max ₹"
+            value={maxPrice}
+            onChange={(e) => setMaxPrice(e.target.value)}
+            className="md:w-40 border rounded-xl px-4 py-2 outline-none"
+          />
         </div>
-      </main>
+      </div>
+
+      {/* Sweets Section */}
+      <div className="max-w-7xl mx-auto px-6 mt-12 pb-12">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-6">
+          Available Sweets
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {filteredSweets.map((sweet) => (
+            <div
+              key={sweet.id}
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1"
+            >
+              {/* Image Placeholder */}
+              <div className="h-40 bg-gradient-to-r from-rose-200 to-pink-200 rounded-t-2xl flex items-center justify-center text-4xl">
+                <img src="https://imgs.search.brave.com/9VYPFvWZWuCVbvFYfq9M0NBvEO1xuE_n-eSRcWWQS18/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdDIu/ZGVwb3NpdHBob3Rv/cy5jb20vNTY1MzYz/OC8xMTQ1MC9pLzQ1/MC9kZXBvc2l0cGhv/dG9zXzExNDUwOTgx/MC1zdG9jay1waG90/by1pbmRpYW4tc3dl/ZXRzLWJ1bmRpLWxh/ZGR1LW9yLmpwZw" alt="" />
+              </div>
+
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {sweet.name}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  {sweet.category}
+                </p>
+
+                <div className="flex justify-between items-center mt-4">
+                  <span className="text-lg font-bold text-rose-600">
+                    ₹{sweet.price}
+                  </span>
+                  <button className="bg-rose-500 text-white px-4 py-1.5 rounded-full hover:bg-rose-600 transition">
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredSweets.length === 0 && (
+          <p className="text-center text-gray-500 mt-10">
+            No sweets found 🍭
+          </p>
+        )}
+      </div>
     </div>
   );
 }
