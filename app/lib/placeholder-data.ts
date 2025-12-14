@@ -57,4 +57,56 @@ const users = [
     }
 ];
 
-export {users};
+const products = [
+    {
+      name: "Rasgulla",
+      price: 120,
+      inStock: 50,
+      category: "Indian",
+    },
+    {
+      name: "Gulab Jamun",
+      price: 150,
+      inStock: 40,
+      category: "Indian",
+    },
+    {
+      name: "Kaju Katli",
+      price: 800,
+      inStock: 25,
+      category: "Indian",
+    },
+    {
+      name: "Ladoo",
+      price: 200,
+      inStock: 60,
+      category: "Indian",
+    },
+    {
+      name: "Jalebi",
+      price: 180,
+      inStock: 45,
+      category: "Indian",
+    },
+    {
+      name: "Barfi",
+      price: 350,
+      inStock: 30,
+      category: "Indian",
+    },
+    {
+      name: "Brownie",
+      price: 90,
+      inStock: 70,
+      category: "Bakery",
+    },
+    {
+      name: "Donut",
+      price: 70,
+      inStock: 80,
+      category: "Bakery",
+    },
+  ];
+  
+
+export {users, products};
