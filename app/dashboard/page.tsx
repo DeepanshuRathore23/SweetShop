@@ -1,24 +1,13 @@
-// import { useState } from "react";
 import { signOut, auth } from "@/auth";
+import { fetchOrdersByUser } from "@/lib/data";
 import { FaSignOutAlt, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 
 export default async function Dashboard() {
   // Change role to "admin" or "customer"
   // const [role] = useState("customer");
   const role  = "customer"
-
   const session = await auth();
-
-  const orders = [
-    { id: 1, sweet: "Gulab Jamun", qty: 2, price: 100, status: "Delivered" },
-    { id: 2, sweet: "Chocolate Cake", qty: 1, price: 200, status: "Pending" },
-  ];
-
-  const sweets = [
-    { id: 1, name: "Gulab Jamun", stock: 50, price: 50 },
-    { id: 2, name: "Rasgulla", stock: 30, price: 60 },
-    { id: 3, name: "Cupcake", stock: 20, price: 80 },
-  ];
+  const orders = await fetchOrdersByUser();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 to-orange-100 p-6">

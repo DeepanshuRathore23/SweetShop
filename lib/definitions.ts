@@ -12,3 +12,8 @@ export type Product = {
     category: string,
     in_stock: number
 }
+
+export type Order = {
+    product_id: number,
+    customer_id: number
+}
