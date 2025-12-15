@@ -1,27 +1,42 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {FaSearch } from "react-icons/fa";
 
-//dummy data for now
-const sweetsData = [
-  { id: 1, name: "Gulab Jamun", category: "Indian", price: 50 },
-  { id: 2, name: "Chocolate Cake", category: "Cake", price: 200 },
-  { id: 3, name: "Ladoo", category: "Indian", price: 30 },
-  { id: 4, name: "Donut", category: "Bakery", price: 40 },
-  { id: 5, name: "Rasgulla", category: "Indian", price: 60 },
-  { id: 6, name: "Cupcake", category: "Bakery", price: 80 },
-];
+
+type Products = {
+  name: string,
+  price: number,
+  in_stock: number,
+  category: string
+}
 
 export default function Home() {
-  const [search, setSearch] = useState("");
-  const [maxPrice, setMaxPrice] = useState();
+  const [products, setProducts] = useState<Products[]>([])
+  useEffect(() => {
+    async function getProducts(){
+      const res = await fetch('/api/fetchProducts');
+      const data = await res.json()
+      setProducts(data);
+    }
 
-  const filteredSweets = sweetsData.filter(
-    (sweet) =>
-      (sweet.name.toLowerCase().includes(search.toLowerCase()) ||
-        sweet.category.toLowerCase().includes(search.toLowerCase())) &&
-      (maxPrice == undefined || sweet.price <= maxPrice)
-  );
+    getProducts();
+  }, [])
+
+  const [search, setSearch] = useState("");
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+
+
+  const filteredSweets = products.filter((sweet) => {
+    const name = sweet.name?.toLowerCase() || "";
+    const category = sweet.category?.toLowerCase() || "";
+    const searchText = search.toLowerCase();
+  
+    return (
+      (name.includes(searchText) || category.includes(searchText)) &&
+      (maxPrice === undefined || sweet.price <= maxPrice)
+    );
+  });
+  
 
   return (
     <div className="min-h-screen bg-blue-200">
@@ -43,8 +58,10 @@ export default function Home() {
           <input
             type="number"
             placeholder="Max ₹"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
+            value={maxPrice ?? ""}
+            onChange={(e) =>
+              setMaxPrice(e.target.value ? Number(e.target.value) : undefined)
+            }
             className="md:w-40 border rounded-xl px-4 py-2 outline-none"
           />
         </div>
@@ -57,9 +74,9 @@ export default function Home() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {filteredSweets.map((sweet) => (
+          {filteredSweets.map((sweet, index) => (
             <div
-              key={sweet.id}
+              key={index}
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1"
             >
               {/* Image Placeholder */}

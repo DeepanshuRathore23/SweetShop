@@ -1,10 +1,13 @@
-"use client"
-import { useState } from "react";
+// import { useState } from "react";
+import { signOut, auth } from "@/auth";
 import { FaSignOutAlt, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 
-export default function Dashboard() {
+export default async function Dashboard() {
   // Change role to "admin" or "customer"
-  const [role] = useState("customer");
+  // const [role] = useState("customer");
+  const role  = "customer"
+
+  const session = await auth();
 
   const orders = [
     { id: 1, sweet: "Gulab Jamun", qty: 2, price: 100, status: "Delivered" },
@@ -23,13 +26,19 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex justify-between items-center bg-white rounded-xl shadow p-5 mb-8">
         <h1 className="text-2xl font-bold text-rose-600">
-          Dashboard ({role === "admin" ? "Admin" : "User"})
+          Welcome {session?.user?.name} ({role === "admin" ? "Admin" : "Customer"})
         </h1>
 
-        <button className="flex items-center gap-2 bg-rose-500 text-white px-4 py-2 rounded-lg hover:bg-rose-600 transition">
-          <FaSignOutAlt />
-          Sign Out
-        </button>
+        <form action={async () => {
+                  'use server'
+                  await signOut({redirectTo: '/'});
+              }}>
+                  <button
+                      className="text-sm text-red-600 border border-red-600 px-4 py-1 rounded hover:bg-red-50"
+                      >
+                      Sign Out
+                  </button>
+        </form>
       </div>
 
       {/* CUSTOMER DASHBOARD */}

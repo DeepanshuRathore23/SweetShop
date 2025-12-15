@@ -107,6 +107,50 @@ const products = [
       category: "Bakery",
     },
   ];
-  
 
-export {users, products};
+
+  const orders = [
+    {
+      userEmail: "deepanshurathore12@gmail.com",
+      productName: "Rasgulla",
+      quantity: 2,
+    },
+    {
+      userEmail: "rahul.sharma@example.com",
+      productName: "Gulab Jamun",
+      quantity: 1,
+    },
+    {
+      userEmail: "priya.verma@example.com",
+      productName: "Kaju Katli",
+      quantity: 1,
+    },
+    {
+      userEmail: "aman.kapoor@example.com",
+      productName: "Ladoo",
+      quantity: 3,
+    },
+    {
+      userEmail: "sneha.mishra@example.com",
+      productName: "Brownie",
+      quantity: 4,
+    },
+    {
+      userEmail: "arjun.singh@example.com",
+      productName: "Jalebi",
+      quantity: 2,
+    },
+    {
+      userEmail: "kavya.patel@example.com",
+      productName: "Barfi",
+      quantity: 1,
+    },
+    {
+      userEmail: "vikas.yadav@example.com",
+      productName: "Donut",
+      quantity: 5,
+    }
+  ];
+   
+
+export {users, products, orders};

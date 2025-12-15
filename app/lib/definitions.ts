@@ -5,3 +5,10 @@ export type User = {
     dob: string, 
     phone: string
 }
+
+export type Product = {
+    product_name: string,
+    price: number,
+    category: string,
+    in_stock: number
+}
