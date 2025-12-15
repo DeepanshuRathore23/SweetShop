@@ -3,21 +3,21 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useActionState } from 'react';
-import { authenticate } from '@/lib/actions';
+import { adminLogin } from '@/lib/actions';
 import { useSearchParams } from 'next/navigation';
 
-export default function LoginPage() {
+export default function AdminLoginPage() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
+  const callbackUrl = searchParams.get('callbackUrl') || '/admin-dashboard';
   const [errorMessage, formAction, isPending] = useActionState(
-    authenticate,
+    adminLogin,
     undefined,
   );
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In As Customer</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In As Admin</h1>
 
         <form action={formAction} className="space-y-5">
           <div>
@@ -65,7 +65,7 @@ export default function LoginPage() {
           Don't have an account? <Link href="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
         </p>
         <p className="text-sm text-gray-600 mt-4 text-center">
-          SignIn as Admin <Link href="/admin-login" className="text-blue-600 hover:underline">Sign In</Link>
+          sign in as customer <Link href="/login" className="text-blue-600 hover:underline">Sign In</Link>
         </p>
       </div>
     </main>

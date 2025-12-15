@@ -151,6 +151,11 @@ const products = [
       quantity: 5,
     }
   ];
+
+const Admin= {
+  email: "deepanshurathore2004@gmail.com",
+  password: "12345678"
+}
    
 
-export {users, products, orders};
+export {users, products, orders, Admin};

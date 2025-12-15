@@ -3,6 +3,8 @@
 import { signIn } from '@/auth';
 import postgres from 'postgres';
 import { AuthError } from 'next-auth';
+import { Admin } from './placeholder-data'
+import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt';
 import credentials from 'next-auth/providers/credentials';
 
@@ -66,3 +68,40 @@ export async function signUp(prevState: string | undefined, formData: FormData) 
     return "success";
   
 }
+
+
+
+export async function adminLogin(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  const email = formData.get("email")?.toString();
+  const password = formData.get("password")?.toString();
+  const redirectTo =
+    formData.get("redirectTo")?.toString() || "/admin-dashboard";
+
+  if (!email || !password) {
+    return "Email and password are required";
+  }
+
+  // ✅ Validate admin from placeholder-data
+  if (Admin.email !== email || Admin.password !== password) {
+    return "Invalid admin credentials";
+  }
+
+  try {
+    // ✅ THIS CREATES SESSION
+    await signIn("credentials", {
+      email,
+      password,
+      role: "admin",        // 👈 important
+      redirectTo,
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return "Admin login failed";
+    }
+    throw error;
+  }
+}
+
