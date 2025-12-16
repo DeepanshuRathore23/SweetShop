@@ -1,5 +1,5 @@
 
-import {users, products, orders} from '../../lib/placeholder-data'
+import {users, products, orders} from '../lib/placeholder-data'
 import postgres from 'postgres'
 import bcrypt from 'bcrypt';
 

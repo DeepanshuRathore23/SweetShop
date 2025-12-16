@@ -1,12 +1,12 @@
-import { signOut, auth } from "@/auth";
-import { fetchOrdersByUser } from "@/lib/data";
+// import { signOut, auth } from "@/auth";
+// import { fetchOrdersByUser } from "@/app/lib/data";
 import { FaSignOutAlt, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 
 export default async function Dashboard() {
   let role  = "customer"
   
-  const session = await auth();
-  const orders = await fetchOrdersByUser();
+  // const session = await auth();
+  // const orders = await fetchOrdersByUser();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 to-orange-100 p-6">
@@ -14,12 +14,12 @@ export default async function Dashboard() {
       {/* Header */}
       <div className="flex justify-between items-center bg-white rounded-xl shadow p-5 mb-8">
         <h1 className="text-2xl font-bold text-rose-600">
-          Welcome {session?.user?.name}
+          {/* Welcome {session?.user?.name} */}
         </h1>
 
         <form action={async () => {
                   'use server'
-                  await signOut({redirectTo: '/'});
+                  // await signOut({redirectTo: '/'});
               }}>
                   <button
                       className="text-sm text-red-600 border border-red-600 px-4 py-1 rounded hover:bg-red-50"

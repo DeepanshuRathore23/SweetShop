@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { auth } from "@/auth";
+// import { auth } from "@/auth";
 import Image from "next/image";
 
 export default async function Navbar() {
-    const session = await auth();
-    const isLoggedIn = session?.user;
+    // const session = await auth();
+    // const isLoggedIn = session?.user;
     
     return (
         <div className="bg-blue-200">
@@ -17,7 +17,7 @@ export default async function Navbar() {
                 
 
                 {/* <FaUserCircle className="text-3xl text-gray-700 hover:text-rose-500 cursor-pointer transition" /> */}
-                { isLoggedIn ? (
+                {/* { isLoggedIn ? (
                     <>
                       <Link href='/dashboard'>
                         <Image
@@ -37,7 +37,7 @@ export default async function Navbar() {
                         Sign in
                       </Link>
                     </>
-                  )}
+                  )} */}
             </nav>
         </div>
         

@@ -1,10 +1,8 @@
-import { signOut, auth } from "@/auth";
-import { fetchOrdersByUser } from "@/lib/data";
-import { FaSignOutAlt, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
+// import { signOut, auth } from "@/auth";
 
 export default async function Dashboard() {
     const role = "admin"
-  const session = await auth();
+  // const session = await auth();
 //   const orders = await fetchOrdersByUser();
 
   return (
@@ -13,10 +11,10 @@ export default async function Dashboard() {
       {/* Header */}
       <div className="flex justify-between items-center bg-white rounded-xl shadow p-5 mb-8">
         <h1 className="text-2xl font-bold text-rose-600">
-          Welcome {session?.user?.name} (Admin)
+          {/* Welcome {session?.user?.name} (Admin) */}
         </h1>
 
-        <form action={async () => {
+        {/* <form action={async () => {
                   'use server'
                   await signOut({redirectTo: '/'});
               }}>
@@ -25,7 +23,7 @@ export default async function Dashboard() {
                       >
                       Sign Out
                   </button>
-        </form>
+        </form> */}
       </div>
 
       {/* ADMIN DASHBOARD */}
@@ -37,7 +35,7 @@ export default async function Dashboard() {
             </h2>
 
             <button className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-              <FaPlus />
+              {/* <FaPlus /> */}
               Add Sweet
             </button>
           </div>
