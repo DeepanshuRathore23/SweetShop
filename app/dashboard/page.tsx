@@ -1,12 +1,11 @@
-// import { signOut, auth } from "@/auth";
-// import { fetchOrdersByUser } from "@/app/lib/data";
+import { signOut, auth } from "@/auth";
+import { fetchOrdersByUser } from "@/app/lib/data";
 import { FaSignOutAlt, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 
 export default async function Dashboard() {
-  // let role  = "customer"
-  
-  // const session = await auth();
-  // const orders = await fetchOrdersByUser();
+    let role = "customer"
+  const session = await auth();
+  const orders = await fetchOrdersByUser();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 to-orange-100 p-6">
@@ -14,23 +13,23 @@ export default async function Dashboard() {
       {/* Header */}
       <div className="flex justify-between items-center bg-white rounded-xl shadow p-5 mb-8">
         <h1 className="text-2xl font-bold text-rose-600">
-          {/* Welcome {session?.user?.name} */}
+          Welcome {session?.user?.name}
         </h1>
 
-        {/* <form action={async () => {
+        <form action={async () => {
                   'use server'
-                  // await signOut({redirectTo: '/'});
+                  await signOut({redirectTo: '/'});
               }}>
                   <button
                       className="text-sm text-red-600 border border-red-600 px-4 py-1 rounded hover:bg-red-50"
                       >
                       Sign Out
                   </button>
-        </form> */}
+        </form>
       </div>
 
       {/* CUSTOMER DASHBOARD */}
-      {/* {role === "customer" && ( */}
+      {role === "customer" && (
         <div className="bg-white rounded-xl shadow p-6">
           <h2 className="text-xl font-semibold mb-4 text-gray-700">
             Orders Placed
@@ -46,10 +45,10 @@ export default async function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {/* {orders.map((order) => (
-                <tr key={order.id} className="border-b hover:bg-gray-50">
-                  <td className="p-3">{order.sweet}</td>
-                  <td className="p-3">{order.qty}</td>
+              {/* {orders.map((order, index) => (
+                <tr key={index} className="border-b hover:bg-gray-50">
+                  <td className="p-3">{order.name}</td>
+                  <td className="p-3">{order.}</td>
                   <td className="p-3">₹{order.price}</td>
                   <td className="p-3">
                     <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
@@ -61,7 +60,7 @@ export default async function Dashboard() {
             </tbody>
           </table>
         </div>
-      {/* )} */}
+       )}
     </div>
   );
 }

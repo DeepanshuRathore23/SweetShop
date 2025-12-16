@@ -1,25 +1,25 @@
 'use client';
 
-// import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-// import Link from 'next/link';
-// import { useActionState } from 'react';
-// import { authenticate } from '@/app/lib/actions';
-// import { useSearchParams } from 'next/navigation';
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { useActionState } from 'react';
+import { authenticate } from '../lib/actions';
+import { useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
-  // const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
-  // const [errorMessage, formAction, isPending] = useActionState(
-  //   authenticate,
-  //   undefined,
-  // );
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
+  const [errorMessage, formAction, isPending] = useActionState(
+    authenticate,
+    undefined,
+  );
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In As Customer</h1>
 
-        {/* <form action={formAction} className="space-y-5"> */}
+        <form action={formAction} className="space-y-5">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
             <input
@@ -42,30 +42,30 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* <input type="hidden" name='redirectTo' value={callbackUrl} /> */}
+          <input type="hidden" name='redirectTo' value={callbackUrl} />
           <button
             type="submit"
             className="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition"
-            // aria-disabled={isPending}
+            aria-disabled={isPending}
           >
             Sign In
           </button>
 
           <div className="flex h-8 items-end space-x-1" aria-live="polite" aria-atomic="true">
-            {/* {errorMessage && ( */}
+            {errorMessage && (
               <>
-                {/* <ExclamationCircleIcon className="h-5 w-5 text-red-500" /> */}
-                {/* <p className="text-sm text-red-500">{errorMessage}</p> */}
+                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+                <p className="text-sm text-red-500">{errorMessage}</p>
               </>
-            {/* )} */}
+             )} 
           </div>
-        {/* </form> */}
+        </form>
 
         <p className="text-sm text-gray-600 mt-4 text-center">
-          {/* Don't have an account? <Link href="/signup" className="text-blue-600 hover:underline">Sign Up</Link> */}
+          Don't have an account? <Link href="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
         </p>
         <p className="text-sm text-gray-600 mt-4 text-center">
-          {/* SignIn as Admin <Link href="/admin-login" className="text-blue-600 hover:underline">Sign In</Link> */}
+          SignIn as Admin <Link href="/admin-login" className="text-blue-600 hover:underline">Sign In</Link>
         </p>
       </div>
     </main>
