@@ -2,39 +2,39 @@
 import { useState, useEffect } from "react";
 import {FaSearch } from "react-icons/fa";
 
-// type Products = {
-//   name: string,
-//   price: number,
-//   in_stock: number,
-//   category: string
-// }
+type Products = {
+  name: string,
+  price: number,
+  in_stock: number,
+  category: string
+}
 
 export default function Home() {
-  // const [products, setProducts] = useState<Products[]>([])
-  // useEffect(() => {
-  //   async function getProducts(){
-  //     const res = await fetch('/api/fetchProducts');
-  //     const data = await res.json()
-  //     setProducts(data);
-  //   }
+  const [products, setProducts] = useState<Products[]>([])
+  useEffect(() => {
+    async function getProducts(){
+      const res = await fetch('/api/fetchProducts');
+      const data = await res.json()
+      setProducts(data);
+    }
 
-  //   getProducts();
-  // }, [])
+    getProducts();
+  }, [])
 
-  // const [search, setSearch] = useState("");
-  // const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+  const [search, setSearch] = useState("");
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
 
 
-  // const filteredSweets = products.filter((sweet) => {
-  //   const name = sweet.name?.toLowerCase() || "";
-  //   const category = sweet.category?.toLowerCase() || "";
-  //   const searchText = search.toLowerCase();
+  const filteredSweets = products.filter((sweet) => {
+    const name = sweet.name?.toLowerCase() || "";
+    const category = sweet.category?.toLowerCase() || "";
+    const searchText = search.toLowerCase();
   
-  //   return (
-  //     (name.includes(searchText) || category.includes(searchText)) &&
-  //     (maxPrice === undefined || sweet.price <= maxPrice)
-  //   );
-  // });
+    return (
+      (name.includes(searchText) || category.includes(searchText)) &&
+      (maxPrice === undefined || sweet.price <= maxPrice)
+    );
+  });
   
 
   return (
@@ -44,17 +44,17 @@ export default function Home() {
         <div className="bg-white/80 text-black  rounded-2xl shadow-lg p-6 flex flex-col md:flex-row gap-4">
           
           <div className="flex items-center gap-3 flex-1 border rounded-xl px-4 py-2">
-            {/* <FaSearch className="" />
+            <FaSearch className="" />
             <input
               type="text"
               placeholder="Search sweets by name or category..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full outline-none"
-            /> */}
+            />
           </div>
 
-          {/* <input
+          <input
             type="number"
             placeholder="Max ₹"
             value={maxPrice ?? ""}
@@ -62,7 +62,7 @@ export default function Home() {
               setMaxPrice(e.target.value ? Number(e.target.value) : undefined)
             }
             className="md:w-40 border rounded-xl px-4 py-2 outline-none"
-          /> */}
+          />
         </div>
       </div>
 
@@ -73,9 +73,9 @@ export default function Home() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {/* {filteredSweets.map((sweet, index) => ( */}
+          {filteredSweets.map((sweet, index) => (
             <div
-              // key={index}
+              key={index}
               className="bg-white rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1"
             >
               {/* Image Placeholder */}
@@ -85,15 +85,15 @@ export default function Home() {
 
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800">
-                  {/* {sweet.name} */}
+                  {sweet.name}
                 </h3>
                 <p className="text-sm text-gray-500">
-                  {/* {sweet.category} */}
+                  {sweet.category}
                 </p>
 
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-lg font-bold text-rose-600">
-                    {/* ₹{sweet.price} */}
+                    ₹{sweet.price}
                   </span>
                   <button className="bg-rose-500 text-white px-4 py-1.5 rounded-full hover:bg-rose-600 transition">
                     Add
@@ -101,14 +101,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          {/* ))} */}
+           ))} 
         </div>
 
-        {/* {filteredSweets.length === 0 && ( */}
+        {filteredSweets.length === 0 && (
           <p className="text-center text-gray-500 mt-10">
             No sweets found 🍭
           </p>
-        {/* )} */}
+         )}
       </div>
     </div>
   );
