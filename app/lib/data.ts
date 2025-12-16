@@ -17,8 +17,11 @@ export async function fetchProducts(): Promise<Product[]>{
 
 export async function fetchOrdersByUser(): Promise<Order[]> {
     const session = await auth();
+    if (!session?.user?.id) return [];
+    console.log("At data.ts = ", session)
     try{
-        const data = await sql.unsafe<Order[]>(`SELECT * FROM orders WHERE customer_id = ${session?.user?.id}`);
+        const data = await sql<Order[]>`SELECT * FROM orders WHERE customer_id = ${session?.user?.id}`;
+        // console.log(session?.user)
         return data;
     } catch(err) {
         console.log("Database error ", err);
