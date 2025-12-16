@@ -1,7 +1,7 @@
 // import LoginForm from "../ui/login-form";
 // import { Suspense } from "react";
 
-// export default function page(){
+export default function page(){
 //     return (
 //         <>
 //              <Suspense>
@@ -9,4 +9,4 @@
 //             </Suspense>
 //         </>
 //     );
-// }                                             
+}
