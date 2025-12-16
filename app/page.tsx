@@ -1,8 +1,3 @@
-"use client"
-import { useState, useEffect } from "react";
-import {FaSearch } from "react-icons/fa";
-
-
 // type Products = {
 //   name: string,
 //   price: number,
