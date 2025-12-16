@@ -17,7 +17,7 @@ export default async function Dashboard() {
           {/* Welcome {session?.user?.name} */}
         </h1>
 
-        <form action={async () => {
+        {/* <form action={async () => {
                   'use server'
                   // await signOut({redirectTo: '/'});
               }}>
@@ -26,7 +26,7 @@ export default async function Dashboard() {
                       >
                       Sign Out
                   </button>
-        </form>
+        </form> */}
       </div>
 
       {/* CUSTOMER DASHBOARD */}

@@ -1,13 +1,13 @@
-import SignupForm from "../ui/signup-from";
-import { Suspense } from "react";
+// import SignupForm from "../ui/signup-from";
+// import { Suspense } from "react";
 
-export default function Page(){
-    return (
-        <>
-        <Suspense>
-            <SignupForm/>
-        </Suspense>
+// export default function Page(){
+//     return (
+//         <>
+//         <Suspense>
+//             <SignupForm/>
+//         </Suspense>
         
-        </>
-    );
-}
+//         </>
+//     );
+// }

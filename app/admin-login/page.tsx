@@ -1,12 +1,12 @@
-import AdminLoginForm from "../ui/login-form-admin";
-import { Suspense } from "react";
+// import AdminLoginForm from "../ui/login-form-admin";
+// import { Suspense } from "react";
 
-export default function page(){
-    return (
-        <>
-             <Suspense>
-                <AdminLoginForm />
-            </Suspense>
-        </>
-    );
-}                                             
+// export default function page(){
+//     return (
+//         <>
+//              <Suspense>
+//                 <AdminLoginForm />
+//             </Suspense>
+//         </>
+//     );
+// }                                             

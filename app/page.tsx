@@ -12,15 +12,15 @@ type Products = {
 
 export default function Home() {
   const [products, setProducts] = useState<Products[]>([])
-  useEffect(() => {
-    async function getProducts(){
-      const res = await fetch('/api/fetchProducts');
-      const data = await res.json()
-      setProducts(data);
-    }
+  // useEffect(() => {
+  //   async function getProducts(){
+  //     const res = await fetch('/api/fetchProducts');
+  //     const data = await res.json()
+  //     setProducts(data);
+  //   }
 
-    getProducts();
-  }, [])
+  //   getProducts();
+  // }, [])
 
   const [search, setSearch] = useState("");
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
