@@ -2,7 +2,7 @@ import { signOut, auth } from "@/auth";
 import { fetchOrdersByUser } from "@/app/lib/data";
 import { FaSignOutAlt, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 
-export default async function Dashboard() {
+export default async function page() {
     let role = "customer"
   const session = await auth();
   const orders = await fetchOrdersByUser();

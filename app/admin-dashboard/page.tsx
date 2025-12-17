@@ -1,6 +1,6 @@
 import { signOut, auth } from "@/auth";
 
-export default async function Dashboard() {
+export default async function page() {
     const role = "admin"
 //   const session = await auth();
 //   const orders = await fetchOrdersByUser();
