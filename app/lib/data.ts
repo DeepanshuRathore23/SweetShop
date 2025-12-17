@@ -15,12 +15,18 @@ export async function fetchProducts(): Promise<Product[]>{
     }
 }
 
-export async function fetchOrdersByUser(): Promise<Order[]> {
+export async function fetchOrdersByUser(): Promise<(Order & {product_name: string})[]> {
     const session = await auth();
     if (!session?.user?.id) return [];
     console.log("At data.ts = ", session)
     try{
-        const data = await sql<Order[]>`SELECT * FROM orders WHERE customer_id = ${session?.user?.id}`;
+        const data = await sql<(Order & {product_name: string})[]>`SELECT 
+            orders.*,
+            products.product_name AS product_name
+            FROM orders
+            JOIN products
+            ON orders.product_id = products.id
+            WHERE orders.customer_id = ${session.user.id}`;
         // console.log(session?.user)
         return data;
     } catch(err) {

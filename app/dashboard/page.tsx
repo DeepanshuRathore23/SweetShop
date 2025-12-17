@@ -45,18 +45,18 @@ export default async function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {/* {orders.map((order, index) => (
-                <tr key={index} className="border-b hover:bg-gray-50">
-                  <td className="p-3">{order.name}</td>
-                  <td className="p-3">{order.}</td>
-                  <td className="p-3">₹{order.price}</td>
+              {orders.map((order, index) => (
+                <tr key={index} className="border-b hover:bg-gray-50 text-black">
+                  <td className="p-3">{order.product_name}</td>
+                  {/* <td className="p-3">{order.}</td> */}
+                  {/* <td className="p-3">₹{order.price}</td> */}
                   <td className="p-3">
                     <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
-                      {order.status}
+                      {/* {order.status} */}
                     </span>
                   </td>
                 </tr>
-              ))} */}
+              ))}
             </tbody>
           </table>
         </div>
