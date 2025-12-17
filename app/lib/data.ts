@@ -48,6 +48,16 @@ export async function placeOrder(productId: number): Promise<boolean> {
     // console.log("user id = ", userId);
 
     try{
+        const res = await sql`UPDATE products
+            SET in_stock = in_stock - 1
+            WHERE id = ${productId} AND in_stock > 0
+            RETURNING id
+        `;
+
+        if (res.length === 0) {
+            throw new Error("Out of stock");
+        }
+
         await sql`INSERT INTO orders (product_id, customer_id) 
         VALUES (${productId}, ${session.user?.id})`;
         return true;

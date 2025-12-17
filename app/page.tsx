@@ -115,12 +115,15 @@ export default function page() {
                 <p className="text-sm text-gray-500">
                   {sweet.category}
                 </p>
+                <p className="text-sm text-gray-500">
+                  {sweet.in_stock} pcs left
+                </p>
 
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-lg font-bold text-rose-600">
                     ₹{sweet.price}
                   </span>
-                  <button onClick={() => placeOrder(sweet.id)} className="bg-rose-500 text-white px-4 py-1.5 rounded-full hover:bg-rose-600 transition">
+                  <button onClick={() => placeOrder(sweet.id)} className="cursor-pointer bg-rose-500 text-white px-4 py-1.5 rounded-full hover:bg-rose-600 transition">
                     Order Now
                   </button>
                 </div>
