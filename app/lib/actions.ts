@@ -17,13 +17,17 @@ export async function authenticate(
 ) {
   try {
     const res = await signIn('credentials', formData);
+    console.log(res, "at actions");
+    return res;
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
+          console.log("Invalid credentials at actions");
           return 'Invalid credentials.';
         default:
-          return 'Something went wrong.';
+          console.log("Something wring at actions");
+          return 'Something went wrong.';          
       }
     }
     throw error;
