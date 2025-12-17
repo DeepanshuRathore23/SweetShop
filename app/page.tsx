@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import {FaSearch } from "react-icons/fa";
 
 type Products = {
-  name: string,
+  id: number,
+  product_name: string,
   price: number,
   in_stock: number,
   category: string
@@ -26,7 +27,7 @@ export default function page() {
 
 
   const filteredSweets = products.filter((sweet) => {
-    const name = sweet.name?.toLowerCase() || "";
+    const name = sweet.product_name?.toLowerCase() || "";
     const category = sweet.category?.toLowerCase() || "";
     const searchText = search.toLowerCase();
   
@@ -35,6 +36,30 @@ export default function page() {
       (maxPrice === undefined || sweet.price <= maxPrice)
     );
   });
+
+  async function placeOrder(productId: number) {
+    console.log("product id at home page = ", productId);
+    try{
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify( {productId} ),
+      });
+
+      const data = await res.json();
+
+      if(!res.ok) {
+        alert(data.message || "Order failed");
+      }
+
+      alert("Order placed Successfully");
+    } catch(err) {
+      console.error(err);
+      alert("Something went wrong");
+    }
+  }
   
 
   return (
@@ -85,7 +110,7 @@ export default function page() {
 
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800">
-                  {sweet.name}
+                  {sweet.product_name}
                 </h3>
                 <p className="text-sm text-gray-500">
                   {sweet.category}
@@ -95,8 +120,8 @@ export default function page() {
                   <span className="text-lg font-bold text-rose-600">
                     ₹{sweet.price}
                   </span>
-                  <button className="bg-rose-500 text-white px-4 py-1.5 rounded-full hover:bg-rose-600 transition">
-                    Add
+                  <button onClick={() => placeOrder(sweet.id)} className="bg-rose-500 text-white px-4 py-1.5 rounded-full hover:bg-rose-600 transition">
+                    Order Now
                   </button>
                 </div>
               </div>

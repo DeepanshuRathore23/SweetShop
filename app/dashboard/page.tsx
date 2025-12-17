@@ -39,8 +39,8 @@ export default async function Dashboard() {
             <thead>
               <tr className="border-b text-gray-500">
                 <th className="p-3">Sweet</th>
-                <th className="p-3">Qty</th>
-                <th className="p-3">Total</th>
+                <th className="p-3">Amount</th>
+                {/* <th className="p-3">Total</th> */}
                 <th className="p-3">Status</th>
               </tr>
             </thead>
@@ -49,7 +49,7 @@ export default async function Dashboard() {
                 <tr key={index} className="border-b hover:bg-gray-50 text-black">
                   <td className="p-3">{order.product_name}</td>
                   {/* <td className="p-3">{order.}</td> */}
-                  {/* <td className="p-3">₹{order.price}</td> */}
+                  <td className="p-3">₹{order.price}</td>
                   <td className="p-3">
                     <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
                       {/* {order.status} */}
