@@ -65,7 +65,7 @@ export default function LoginPage() {
           Don't have an account? <Link href="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
         </p>
         <p className="text-sm text-gray-600 mt-4 text-center">
-          SignIn as Admin <Link href="/admin-login" className="text-blue-600 hover:underline">Sign In</Link>
+          {/* SignIn as Admin <Link href="/admin-login" className="text-blue-600 hover:underline">Sign In</Link> */}
         </p>
       </div>
     </main>
