@@ -9,7 +9,7 @@ type Products = {
   category: string
 }
 
-export default function Home() {
+export default function page() {
   const [products, setProducts] = useState<Products[]>([])
   useEffect(() => {
     async function getProducts(){
