@@ -52,9 +52,10 @@ export default function page() {
 
       if(!res.ok) {
         alert(data.message || "Order failed");
+      } else {
+        alert("Order placed Successfully");
       }
-
-      alert("Order placed Successfully");
+      
     } catch(err) {
       console.error(err);
       alert("Something went wrong");
